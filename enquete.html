@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150189428-1"></script>
+  <script src="js/gtag.js"></script>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/bootstrap_custom.css">
+
+  <!-- Optional JavaScript -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.7.0/marked.min.js"></script>
+  <script type="text/javascript" src="js/header.js"></script>
+  <script type="text/javascript" src="js/qaloader.js"></script>
+  
+  <title>アンケート</title>
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <!-- Main Contents -->
+  <div class="container">
+    <div id="formWrapper">
+      <form class="form-horizontal" action="https://googleform-proxy.herokuapp.com/googleformpost" method="post" name="myForm" target="dummyIframe">
+        <div class="form-group" id="question"></div>
+      </form>
+    </div>
+    <input class="btn btn-success btn-block" style='margin-bottom:20px;' type="button" value="送信" onclick="submitForm('myForm')" />
+  </div>
+</body>
+</html>

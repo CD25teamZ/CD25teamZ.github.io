@@ -1,0 +1,9 @@
+.jumbotron-extend {
+    position: relative;
+    height: 3vh;
+    min-height: 100px;
+}
+.jumbotron-container {
+    position: relative;
+    transform: translateY(-50%);
+}
