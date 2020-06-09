@@ -31,8 +31,25 @@ const link_render = function (href, title, text) {
 }
 
 const table_render = function (header, body) {
-  return '<table class="table table-bordered table-hover table-striped">' + '<thead>' + header + '</thead>' + body + '</table>';
+  return '<table class="table table-bordered table-striped">' + '<thead>' + header + '</thead>' + body + '</table>';
 }
+
+const code_render = function (code, infostring, escaped) {
+  const lang = (infostring || '').match(/\S*/)[0];
+
+  if (!lang) {
+    return '<pre><code>'
+      + code
+      + '</code></pre>\n';
+  }
+
+  return '<pre><code class="hljs '
+    + this.options.langPrefix
+    + escape(lang, true)
+    + '">'
+    + hljs.highlightAuto(code, [lang]).value
+    + '</code></pre>\n';
+};
 
 const md_loader = function (uri) {
   const xhr = new XMLHttpRequest();
@@ -40,10 +57,10 @@ const md_loader = function (uri) {
   xhr.addEventListener('loadend', function () {
     if (xhr.status === 200) {
       const renderer = new marked.Renderer()
-      renderer.table = table_render,
-      renderer.image = image_render
+      renderer.table = table_render
       renderer.image = image_render
       renderer.link = link_render
+      renderer.code = code_render
       marked.setOptions({
         renderer: renderer,
       });
@@ -55,7 +72,7 @@ const md_loader = function (uri) {
   xhr.send();
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+window.onload = function() {
   const mdurl = location.href.split("#")[1]
   const mdcontent = document.getElementById('markdown_content')
   if(mdurl){
@@ -63,4 +80,4 @@ document.addEventListener("DOMContentLoaded", function () {
   }else if(mdcontent){
     md_loader(mdcontent.getAttribute("src"));
   }
-});
+};
